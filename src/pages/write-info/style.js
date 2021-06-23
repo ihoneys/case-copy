@@ -25,3 +25,47 @@ export const TabsWrapper = styled.div`
         background-color: #fff;
     }
 `
+
+export const FormWrapper = styled.div`
+    padding: 18px 0px 0px 15px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+`
+
+export const FormItem = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #E7E7E7;
+    &:last-child {
+        border-bottom: none;
+    }
+    .label-item{
+        width: 120px    
+    }
+    .label-icon{
+        color: #F65C44;
+        padding-right: 7px;
+        font-size: 12px;
+    }
+    input::-webkit-input-placeholder {
+        font-size: 15px;
+        color: #999999;
+    }
+`
+
+export const RecordHeader = styled.div`
+    font-size: 15px;
+    padding: 15px;
+`
+export const RecordBotttomWrapper = styled.div` 
+    background-color: #fff;
+    padding: 15px;
+    .my-radio .am-radio {
+        padding: 2.5px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+`
+

@@ -6,7 +6,7 @@ import { PositionBtn } from "./style";
 
 const IsEvenShow = function (props) {
   const { isSingle, buttonInfo } = props;
-  if (isSingle) {
+  if (!isSingle) {
     return (
       <Button className="handle-btn" style={buttonInfo[1].style}>
         {buttonInfo[1].name}
@@ -17,10 +17,10 @@ const IsEvenShow = function (props) {
 };
 
 const IYBottomButton = function (props) {
-  const { buttonInfo, isSingle = false } = props;
+  const { buttonInfo, isSingle = true } = props;
   const content = buttonInfo[0];
   return (
-    <PositionBtn width="100" color={content.color} borderColor={content.borderColor}>
+    <PositionBtn>
       <IsEvenShow isSingle={isSingle} buttonInfo={buttonInfo} />
       <Button className="handle-btn" style={content.style}>
         {content.name}

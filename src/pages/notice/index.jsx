@@ -7,9 +7,10 @@ import { ContentWrapper } from "./style";
 const styleBtn = {
   width: "100%",
   background: "linear-gradient(90deg, #00D2A3 0%, #02C6B8 100%)",
+  color: "#fff"
 };
 
-const buttonInfo = [{ style: styleBtn, width: 100, color: "#fff", borderColor: "none", name: "下一步" }];
+const buttonInfo = [{ style: styleBtn, name: "下一步" }];
 
 export default memo(function IYNotice() {
   return (
