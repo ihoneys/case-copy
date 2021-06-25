@@ -6,6 +6,7 @@ const IYRecord = React.lazy(() => import("@/pages/record"))
 const IYOrderDetail = React.lazy(() => import("@/pages/detail"))
 const IYNotice = React.lazy(() => import("@/pages/notice"))
 const IYWriteInfo = React.lazy(() => import("@/pages/write-info"))
+const IYCopyLabel = React.lazy(() => import("@/pages/copy-label"))
 const routes = [
     {
         path: "/",
@@ -32,6 +33,10 @@ const routes = [
     {
         path: "/write",
         component: IYWriteInfo
+    },
+    {
+        path: "/copy",
+        component: IYCopyLabel
     }
 ]
 

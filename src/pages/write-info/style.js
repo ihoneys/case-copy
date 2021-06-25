@@ -60,12 +60,38 @@ export const RecordHeader = styled.div`
 `
 export const RecordBotttomWrapper = styled.div` 
     background-color: #fff;
-    padding: 15px;
+    padding: 15px 0px 15px 15px;
+    font-size: 15px;
     .my-radio .am-radio {
         padding: 2.5px;
         border: 1px solid #ccc;
         border-radius: 50%;
-        margin-right: 5px;
+    }
+    .record-list{
+        margin-top: 10px;
+        border-bottom: 1px solid #E7E7E7;
+        padding-bottom: 15px;
+        padding-right: 15px;
+    }
+    .title{
+        font-weight: bold;
+    }
+    .remarks{
+        background-color: #DEDFE0;
+        border-radius: 4px;
+        margin-top: 10px;
+        textarea::-webkit-input-placeholder {
+            font-size: 15px;
+            color: #999999;
+        }
+    }
+    .remarks-wrapper{
+        padding-right: 15px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+    .agreement{
+        margin-left: 6px;
     }
 `
 

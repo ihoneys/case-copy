@@ -2378,6 +2378,11 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
+antd-mobile-demo-data@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npm.taobao.org/antd-mobile-demo-data/download/antd-mobile-demo-data-0.3.0.tgz#f275250bebdad308af481672635f8b90def34aed"
+  integrity sha1-8nUlC+va0wivSBZyY1+LkN7zSu0=
+
 antd-mobile@^2.3.4:
   version "2.3.4"
   resolved "https://registry.nlark.com/antd-mobile/download/antd-mobile-2.3.4.tgz#8f584707b30343d102f3ca10fdaf677e2a5d1cc8"
