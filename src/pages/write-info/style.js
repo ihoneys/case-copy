@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const HeaderWrapper = styled.div`
     background-color: #EDEDED;
-    padding: 30px 30px 20px;
 `
 
 export const TabsWrapper = styled.div`

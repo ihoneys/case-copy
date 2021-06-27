@@ -18,8 +18,8 @@ const stepsMock = [
 
 const style = {
   position: "absolute",
-  top: ".12rem",
-  width: "81%",
+  top: ".42rem",
+  width: "66%",
   left: "50%",
   transform: " translateX(-50%)",
   backgroundColor: "#D8D8D8",

@@ -86,7 +86,6 @@ button {
   font-size: 12px;
   color: #333;
   font-family: Arial, Helvetica, sans-serif;
-  /* background-color: #f5f5f5; */
 }
 
 .text-nowrap {
@@ -102,4 +101,7 @@ a:visited,
 a:active,
 a:hover {
   text-decoration: none;
+}
+.pr-15 {
+  padding-right: 15px;
 }

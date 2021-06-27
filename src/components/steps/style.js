@@ -4,6 +4,8 @@ export const StepsWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     position: relative;
+    background-color: #EDEDED;
+    padding: 30px;
     .steps-list{
         display: flex;
         align-items: center;
