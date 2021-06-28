@@ -3,6 +3,8 @@ import React, { memo } from "react";
 import { DetailWrapper, ContentWrapper, AddressWrapper } from "./style";
 
 import IYApplyInfo from "@/components/apply-info";
+import IYOrderSteps from "@/components/order-steps";
+import IYBottomButton from "@/components/bottom-button";
 
 import addressIcon from "@/assets/img/address-icon.png";
 import nextIcon from "@/assets/img/next.png";
@@ -26,15 +28,36 @@ function AddressInfo() {
   );
 }
 
+const CustomBackground = () => {
+  return (
+    <>
+      <div className="background"></div>
+    </>
+  );
+};
+
+const styleBtn = {
+  width: "100%",
+  border: "1px solid #00C6B8",
+  color: "#00C6B8",
+};
+
+const buttonInfo = [{ style: styleBtn, name: "取消申请" }];
+
 export default memo(function IYOrderDetail() {
+  // const status = 0;
+
   return (
     <DetailWrapper>
+      <IYOrderSteps currentIndex={1} />
       <ContentWrapper>
         <IYApplyInfo />
       </ContentWrapper>
       <AddressWrapper>
         <AddressInfo />
       </AddressWrapper>
+      <CustomBackground />
+      <IYBottomButton buttonInfo={buttonInfo} />
     </DetailWrapper>
   );
 });

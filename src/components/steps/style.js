@@ -18,7 +18,7 @@ export const StepsWrapper = styled.div`
         text-align: center;
         line-height: 26px;
         margin-bottom: 10px;
-        z-index: 8888;
+        z-index: 20;
         background-color: #D8D8D8;
         font-size: 14px;
         color: #666666;

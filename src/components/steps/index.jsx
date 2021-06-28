@@ -22,7 +22,8 @@ const style = {
   width: "66%",
   left: "50%",
   transform: " translateX(-50%)",
-  backgroundColor: "#D8D8D8",
+  backgroundColor: "#f5f5f5",
+  zIndex: "19"
 };
 
 export default memo(function IYSteps(props) {

@@ -1,12 +1,23 @@
 import styled from "styled-components";
 export const DetailWrapper = styled.div`
-    height: 100vh;
+    min-height: 100vh;
     padding: .1rem .12rem;
     background-color: #f5f5f5;
     .headerline{
         color: #333;
         font-size: .18rem;
         font-weight: bold;
+    }
+    .background{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 74px;
+        background: linear-gradient(180deg, #00C6B8 0%, #F5F5F5 100%);
+        z-index: 1;
     }
 `
 
@@ -15,6 +26,7 @@ export const ContentWrapper = styled.div`
     border-radius: .08rem;
     font-size: .15rem;  
     background-color: #fff;
+    margin-top: 10px;
 `
 
 export const AddressWrapper = styled.div`
