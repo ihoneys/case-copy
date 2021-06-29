@@ -1,6 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useRef, useState } from "react";
 
-import { WhiteSpace, Flex } from "antd-mobile";
+import SignatureCanvas from "react-signature-canvas";
+
+import { WhiteSpace, Icon } from "antd-mobile";
 
 import { SignWrapper, MaskWrapper, ContentWrapper } from "./style";
 
@@ -41,14 +43,43 @@ const buttonInfo = [
   },
 ];
 
-const HandWriteSignature = () => {
+const HandWriteSignature = (props) => {
+  const { closeSign, getImageBase64 } = props;
+
+  const signCanvas = useRef();
+  const clearSign = () => {
+    signCanvas.current.clear();
+  };
+
+  const createSignImg = async () => {
+    const imageBase64 = signCanvas.current.toDataURL("image/png");
+    getImageBase64(imageBase64);
+  };
+
   return (
     <MaskWrapper>
       <ContentWrapper>
+        <div className="close-sign" onClick={closeSign}>
+          <Icon type="cross-circle" />
+        </div>
         <div className="title">被委托人签名</div>
-        <div className="sign-area">请在空白处进行手写签名</div>
+        <div className="sign-area">
+          <SignatureCanvas
+            backgroundColor="#fff"
+            penColor="#000"
+            canvasProps={{
+              className: "write-name-canvas",
+            }}
+            ref={signCanvas}
+          />
+        </div>
         <div className="confirm-btn">
-          <button className="confirm">确认</button>
+          <button className="confirm reset" onClick={clearSign}>
+            重置
+          </button>
+          <button className="confirm" onClick={createSignImg}>
+            确认
+          </button>
         </div>
       </ContentWrapper>
     </MaskWrapper>
@@ -56,6 +87,20 @@ const HandWriteSignature = () => {
 };
 
 export default memo(function IYSignature() {
+  const [isCloseSign, setIsCloseSign] = useState(false);
+  const [imgBase64, setImgBase64] = useState(null);
+  const closeSign = () => {
+    setIsCloseSign(true);
+    console.log(66);
+  };
+  const showSign = () => {
+    console.log(666);
+    setIsCloseSign(false);
+  };
+  const getImageBase64 = (data) => {
+    setImgBase64(data)
+    setIsCloseSign(true)
+  };
   return (
     <SignWrapper>
       <IYSteps steps={steps} currentIndex={1} />
@@ -86,15 +131,18 @@ export default memo(function IYSignature() {
         <WhiteSpace size="xl" />
         <div className="signature-column">
           <span className="column-width">被委托人签名：</span>
+          {imgBase64 ? <img className="sign-image" src={imgBase64} /> : null}
         </div>
         <div className="signature-column">
           <span className="column-width">时间：</span>
           <span>2021年10月10日</span>
         </div>
-        <button className="entrusted">被委托人签名</button>
+        <button className="entrusted" onClick={showSign}>
+          被委托人签名
+        </button>
       </div>
       <IYBottomButton buttonInfo={buttonInfo} isSingle={false} />
-      <HandWriteSignature />
+      {!isCloseSign ? <HandWriteSignature closeSign={closeSign} getImageBase64={getImageBase64} /> : null}
     </SignWrapper>
   );
 });

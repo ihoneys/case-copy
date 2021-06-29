@@ -31,9 +31,11 @@ export default memo(function IYEnterPage(props) {
   console.log(props);
   const router = props.history;
   const handleGoRecord = () => {
+    router.push("/record");
+  };
+  const handleGoApply = () => {
     router.push("/notice");
   };
-  const handleGoApply = () => {};
 
   return (
     <EntranceWrapper>

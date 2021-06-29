@@ -6,19 +6,23 @@ export const SignWrapper = styled.div`
         text-align: center;
     }
     .content{
-        padding: 20px 15px;
+        padding: .2rem .15rem;
     }
     .content-list li{
-        margin-top: 20px;
+        margin-top: .2rem;
     }
     .column-name{
         color: #999999;
     }
     .matter{
-        line-height: 24px;
+        line-height: .24rem;
     }
     .signature-column{
-        margin-top: 10px;
+        margin-top: .1rem;
+        .sign-image{
+            width: 1.02rem;
+            height: .3rem;
+        }
     }
     .column-width{
         display: inline-block;
@@ -29,14 +33,14 @@ export const SignWrapper = styled.div`
     .entrusted{
         background-color: #ffffff;
         font-weight: 500;
-        font-size: 14px;
-        border-radius: 4px;
-        border: 1px solid #979797;
-        width: 168px;
-        height: 44px;
+        font-size: .14rem;
+        border-radius: .04rem;
+        border: .01rem solid #979797;
+        width: 1.68rem;
+        height: .44rem;
         text-align: center;
-        line-height: 42px;
-        margin-top: 40px;
+        line-height: .42rem;
+        margin-top: .4rem;
     }
 `
 
@@ -58,35 +62,53 @@ export const ContentWrapper = styled.div`
     z-index: 200;
     width: 100%;
     .title{
-        font-size: 24px;
+        font-size: .24rem;
         color: #FFFFFF;
         font-weight: bold;
-        margin-bottom: 20px;
+        margin-bottom: .2rem;
     }
     .sign-area{
         box-sizing: border-box;
         width: 100%;
-        height: 112px;
-        border: 2px dashed #00C6B8;
+        height: 1.42rem;
+        border: .02rem dashed #00C6B8;
         background-color: #FFFFFF;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
+        font-size: .18rem;
         color: #999;
+        padding: .1rem;
     }
     .confirm{
-        width: 167px;
-        height: 44px;
+        width: 1.67rem;
+        height: .44rem;
         background: #FFFFFF;
-        border-radius: 24px;
+        border-radius: .24rem;
         color: #00C6B8;
-        font-size: 16px;    
+        font-size: .16rem;    
     }
     .confirm-btn{
         display: flex;
         align-items: center;
-        justify-content: center;
-        margin-top: 30px;
+        justify-content: space-between;
+        padding: .3rem .1rem;
+    }
+    .reset{
+        color: #333;
+    }
+    .write-name-canvas{
+        width: 3.75rem;
+        height: 1.2rem;
+    }
+    .am-icon{
+        color: #FFFFFF; 
+        width: .3rem;
+        height: .3rem;
+    }
+    .close-sign{
+        position: absolute;
+        right: .1rem;
+        top: -0.5rem;
     }
 `

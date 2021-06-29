@@ -17,12 +17,12 @@ const IsEvenShow = function (props) {
 };
 
 const IYBottomButton = function (props) {
-  const { buttonInfo, isSingle = true } = props;
+  const { buttonInfo, isSingle = true, handleRight = () => {} } = props;
   const content = buttonInfo[0];
   return (
     <PositionBtn>
       <IsEvenShow isSingle={isSingle} buttonInfo={buttonInfo} />
-      <Button className="handle-btn" style={content.style}>
+      <Button className="handle-btn" style={content.style} onClick={handleRight}>
         {content.name}
       </Button>
     </PositionBtn>
