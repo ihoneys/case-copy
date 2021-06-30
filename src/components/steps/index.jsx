@@ -46,7 +46,7 @@ export default memo(function IYSteps(props) {
           </div>
         );
       })}
-      <Progress style={style} percent={percent} appearTransition />
+      <Progress style={style} percent={percent} />
     </StepsWrapper>
   );
 });

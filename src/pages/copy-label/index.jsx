@@ -59,7 +59,19 @@ const copyContentData = Array.from({ length: 10 }).map((item, i) => {
   return { name: "医药报销", key: i, checked: false };
 });
 
+const closest = (el, selector) => {
+  const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+  while (el) {
+    if (matchesSelector.call(el, selector)) {
+      return el;
+    }
+    el = el.parentElement;
+  }
+  return null;
+};
+
 export default memo(function IYCopyLabel() {
+  const [modal, setModal] = useState(true);
   let [count, setCount] = useState(0);
   const [pickerValue, setPickerValue] = useState([]);
   const getCallbackData = (data) => {
@@ -76,11 +88,22 @@ export default memo(function IYCopyLabel() {
     setCount(count + 1);
   };
 
+  const onWrapTouchStart = (e) => {
+    // fix touch to scroll background page on iOS
+    if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
+      return;
+    }
+    const pNode = closest(e.target, ".am-modal-content");
+    if (!pNode) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <CopyLabelWrapper>
       <IYLabelComponent title="复印用途" data={utilityData} getSelectedData={getCallbackData} />
       <div className="list-wrapper">
-        <Picker title="选择地区" extra="请选择(可选)" cascade={false} data={region} value={pickerValue} onChange={(v) => setPickerValue(v)} onOk={(v) => setPickerValue(v)}>
+        <Picker title="选择地区" extra="请选择(可选)" cols={2} cascade={false} data={region} value={pickerValue} onChange={(v) => setPickerValue(v)} onOk={(v) => setPickerValue(v)}>
           <List.Item style={{ width: "100%" }} arrow="horizontal">
             保险所在地
           </List.Item>
@@ -103,6 +126,24 @@ export default memo(function IYCopyLabel() {
         </Flex>
       </List.Item>
       <IYBottomButton buttonInfo={buttonInfo} isSingle={false} />
+      <Modal
+        visible={modal}
+        transparent
+        maskClosable={false}
+        onClose={() => setModal(false)}
+        title="复印用途说明"
+        footer={[
+          {
+            text: "知道了",
+            onPress: () => {
+              setModal(false);
+            },
+          },
+        ]}
+        wrapProps={{ onTouchStart: onWrapTouchStart }}
+      >
+        <p>如不清楚复印用途所需的资料， 请咨询病区医院或对应的报销机构。</p>
+      </Modal>
     </CopyLabelWrapper>
   );
 });

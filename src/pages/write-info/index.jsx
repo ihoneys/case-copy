@@ -1,12 +1,14 @@
-import React, { memo, useState, useRef } from "react";
+import React, { memo, useState } from "react";
 
-import { InputItem, Flex, Radio, TextareaItem, ImagePicker, WhiteSpace } from "antd-mobile";
+import { InputItem, Flex, Radio, TextareaItem, ImagePicker, WhiteSpace, Picker, List } from "antd-mobile";
 
 import IYSteps from "@/components/steps";
 import IYBottomButton from "@/components/bottom-button";
 import IYRadioItem from "@/components/radio";
 
 import { HeaderWrapper, TabsWrapper, FormWrapper, FormItem, RecordBotttomWrapper, RecordHeader, UploaderWrapper, WriteWrapper } from "./style";
+
+import { district } from "antd-mobile-demo-data";
 
 const tabsList = ["本人办理", "他人代办"];
 
@@ -36,25 +38,56 @@ const inputStyle = {
   flex: "1",
 };
 
-const files = [];
+const files = [
+  {
+    url: "https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg",
+    id: "2121",
+  },
+];
+const file = [];
 
 const OthersFromListItem = () => {
-  const onChange = () => {};
+  const [beTrustPositiveImg, setBeTrustPositiveImg] = useState([]);
+  const [beTrustReverseImg, setBeTrustReverseImg] = useState([]);
+  const [beTrustHandImg, setBeTrustHandImg] = useState([]);
+  const onChange = (files, type, index) => {
+    console.log(files, type, index);
+  };
+
   return (
     <>
       <UploaderWrapper>
         <div className="card-id">
           <span className="label-icon">*</span>
-          <label>患者证件（身份证）</label>
+          <label>被委托人证件（身份证）</label>
         </div>
+        {/* 被委托人身份证正面*/}
         <div className="uploader-wrapper">
           <div className="uploader-flex">
-            <ImagePicker length={1} files={files} onChange={onChange} onImageClick={(index, fs) => console.log(index, fs)} selectable={files.length < 7} />
-            <span className="card-name">上传身份证正面</span>
+            <ImagePicker
+              length={1}
+              files={beTrustPositiveImg}
+              onChange={(files, type, index) => setBeTrustPositiveImg(files)}
+              onImageClick={(index, fs) => console.log(index, fs, 123444)}
+              selectable={beTrustPositiveImg.length < 1}
+            />
+            <div className="card-name">上传身份证正面</div>
           </div>
+          {/* 被委托人身份证反面*/}
           <div className="uploader-flex">
-            <ImagePicker length={1} files={files} onChange={onChange} onImageClick={(index, fs) => console.log(index, fs)} selectable={files.length < 7} />
-            <span className="card-name">上传身份证反面</span>
+            <ImagePicker
+              length={1}
+              files={beTrustReverseImg}
+              onChange={(files, type, index) => setBeTrustReverseImg(files)}
+              onImageClick={(index, fs) => console.log(index, fs)}
+              selectable={beTrustReverseImg.length < 1}
+            />
+            <div className="card-name">上传身份证正面</div>
+          </div>
+          {/* 被委托人手持*/}
+          <div className="uploader-flex">
+            <ImagePicker length={1} files={beTrustHandImg} onChange={(files, type, index) => setBeTrustHandImg(files)} onImageClick={(index, fs) => console.log(index, fs)} selectable={beTrustHandImg.length < 1} />
+            <div className="card-name">手持身份证照</div>
           </div>
         </div>
       </UploaderWrapper>
@@ -79,19 +112,21 @@ const OthersFromListItem = () => {
         </div>
         <InputItem style={inputStyle} clear={true} type="text" placeholder="请输入患者姓名" />
       </FormItem>
-      <FormItem>
-        <div className="label-item">
+      <Picker data={district} cols={1} extra="请选择与患者关系">
+        <List.Item style={{ paddingLeft: 0 }} arrow="horizontal">
           <span className="label-icon">*</span>
-          <label>住院号</label>
-        </div>
-        <InputItem style={inputStyle} clear={true} type="text" placeholder="请输入住院号" />
-      </FormItem>
+          <label style={{ fontSize: "15px" }}>关系</label>
+        </List.Item>
+      </Picker>
     </>
   );
 };
 
-const FromListItem = () => {
-  const onChange = () => {};
+const FromListItem = (props) => {
+  const { currentIndex } = props;
+  const [patientPositiveImg, setPatientPositiveImg] = useState([]);
+  const [patientReverseImg, setPatientReverseImg] = useState([]);
+  const [patientHandImg, setPatientHandImg] = useState([]);
   return (
     <>
       <UploaderWrapper>
@@ -99,15 +134,36 @@ const FromListItem = () => {
           <span className="label-icon">*</span>
           <label>患者证件（身份证）</label>
         </div>
+        {/* 患者身份证正面 */}
         <div className="uploader-wrapper">
           <div className="uploader-flex">
-            <ImagePicker length={1} files={files} onChange={onChange} onImageClick={(index, fs) => console.log(index, fs)} selectable={files.length < 7} />
-            <span className="card-name">上传身份证正面</span>
+            <ImagePicker
+              length={1}
+              files={patientPositiveImg}
+              onChange={(files, type, index) => setPatientPositiveImg(files)}
+              onImageClick={(index, fs) => console.log(index, fs)}
+              selectable={patientPositiveImg.length < 1}
+            />
+            <div className="card-name">上传身份证正面</div>
           </div>
+          {/* 患者身份证反面 */}
           <div className="uploader-flex">
-            <ImagePicker length={1} files={files} onChange={onChange} onImageClick={(index, fs) => console.log(index, fs)} selectable={files.length < 7} />
-            <span className="card-name">上传身份证反面</span>
+            <ImagePicker
+              length={1}
+              files={patientReverseImg}
+              onChange={(files, type, index) => setPatientReverseImg(files)}
+              onImageClick={(index, fs) => console.log(index, fs)}
+              selectable={patientReverseImg.length < 1}
+            />
+            <div className="card-name">上传身份证反面</div>
           </div>
+          {/* 患者手持 */}
+          {currentIndex === 0 && (
+            <div className="uploader-flex">
+              <ImagePicker length={1} files={patientHandImg} onChange={(files, type, index) => setPatientHandImg(files)} onImageClick={(index, fs) => console.log(index, fs)} selectable={patientHandImg.length < 1} />
+              <div className="card-name">手持身份证照</div>
+            </div>
+          )}
         </div>
       </UploaderWrapper>
       <FormItem>
@@ -210,15 +266,15 @@ export default memo(function IYWriteInfo() {
         <IYSteps steps={tabsIndex === 0 ? steps : newSteps} currentIndex={0} />
       </HeaderWrapper>
       <Tabs getCurrentIndex={getCurrentIndex} />
-      <FormWrapper>
-        <FromListItem />
-      </FormWrapper>
-      <WhiteSpace />
       {tabsIndex === 1 && (
         <FormWrapper>
-          <OthersFromListItem />
+          <OthersFromListItem curIndex={tabsIndex} />
         </FormWrapper>
       )}
+      {tabsIndex === 1 && <WhiteSpace />}
+      <FormWrapper>
+        <FromListItem currentIndex={tabsIndex} />
+      </FormWrapper>
       <IYBottomButton buttonInfo={buttonInfo} isSingle={false} />
       <RecordHeader className="headerline">住院记录</RecordHeader>
       <RecordBotttomWrapper>

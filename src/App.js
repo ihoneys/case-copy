@@ -6,7 +6,7 @@ import routes from "./router";
 export default memo(function App() {
   return (
     <>
-      <Suspense fallback={<div>Page Loading</div>}>
+      <Suspense fallback={null}>
         {
           renderRoutes(routes)
         }

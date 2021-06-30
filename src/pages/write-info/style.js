@@ -1,9 +1,19 @@
 import styled from "styled-components";
 
-import positive from "@/assets/img/positive.png" 
+import positive from "@/assets/img/positive.png"
 
 export const WriteWrapper = styled.div`
     padding-bottom: 80px;
+    .am-list-extra{
+        color: #333333 !important;
+        font-size: 15px !important;
+    }
+    .my-picker{
+        .am-list-item{
+            padding-left: 0px !important;
+        }
+    }
+   
 `
 
 export const HeaderWrapper = styled.div`
@@ -51,13 +61,20 @@ export const FormItem = styled.div`
         border-bottom: none;
     }
     .label-item{
-        width: 1.2rem    
+        width: 1.2rem;
+        font-size: 15px;
     }
 
     input::-webkit-input-placeholder {
         font-size: .15rem;
         color: #999999;
     }
+    /* .am-list-extra{
+        flex: 1;
+    }
+    .am-list-content{
+        width: 140px !important;
+    } */
 `
 
 export const RecordHeader = styled.div`
@@ -112,23 +129,33 @@ export const UploaderWrapper = styled.div`
         line-height: .44rem;
     }
     .uploader-flex{
-        display: flex;
-        flex-direction: column;
         text-align: center;
         margin-left: .1rem;
     }
     .uploader-wrapper{
         display: flex;
+        align-items: center;
         margin-left: -0.1rem;
+        position: relative;
+        margin-bottom: 20px;
     }
     .card-name{
         color: #999999;
         font-size: .13rem;
+        width: 100px;
+        /* text-align: left; */
     }
-    .m-image-picker-upload-btn{
+    /* .am-image-picker-item{
+        width: 108px;
+        height: 68px;
+        border: 1px  red;
         background-image: url(${positive});
-        background-size: 100%; 
-        background-repeat:no-repeat;
-        width: 8rem;
+        background-size: 100%;
+    } */
+    /* .am-flexbox {
+        overflow: visible;
     }
+    .am-image-picker-item-content{
+        background-size:cover;
+    } */
 `
