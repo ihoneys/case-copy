@@ -18,4 +18,7 @@ export const ContentWrapper = styled.ul`
     .content-text{
         color: #333;
     }
+    .line-h-20{
+        /* line-height: 25px; */
+    }
 `

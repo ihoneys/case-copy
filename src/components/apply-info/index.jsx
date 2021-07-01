@@ -38,7 +38,7 @@ export default memo(function IYApplyInfo() {
       </li>
       <li>
         <span className="content-name">预交费用：</span>
-        <span className="content-text">¥60（预缴费用不等于实际费用不等于实际费用）</span>
+        <span className="content-text line-h-20">¥60（预缴费用不等于实际费用不等于实际费用）</span>
       </li>
     </ContentWrapper>
   );

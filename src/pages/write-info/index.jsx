@@ -45,7 +45,10 @@ const files = [
   },
 ];
 const file = [];
-
+const relationData = [
+  { label: "兄弟", value: "0" },
+  { label: "姐妹", value: "1" },
+];
 const OthersFromListItem = () => {
   const [beTrustPositiveImg, setBeTrustPositiveImg] = useState([]);
   const [beTrustReverseImg, setBeTrustReverseImg] = useState([]);
@@ -112,7 +115,7 @@ const OthersFromListItem = () => {
         </div>
         <InputItem style={inputStyle} clear={true} type="text" placeholder="请输入患者姓名" />
       </FormItem>
-      <Picker data={district} cols={1} extra="请选择与患者关系">
+      <Picker data={relationData} cols={1} extra="请选择与患者关系">
         <List.Item style={{ paddingLeft: 0 }} arrow="horizontal">
           <span className="label-icon">*</span>
           <label style={{ fontSize: "15px" }}>关系</label>
@@ -251,7 +254,8 @@ const newSteps = [
   },
 ];
 
-export default memo(function IYWriteInfo() {
+export default memo(function IYWriteInfo(props) {
+  const router = props.history;
   const [tabsIndex, setTabsIndex] = useState(0);
   const [isRead, setIsRead] = useState(false);
   const [value, setValue] = useState(0);
@@ -259,6 +263,13 @@ export default memo(function IYWriteInfo() {
   const getCurrentIndex = (index) => {
     console.log(index);
     setTabsIndex(index);
+  };
+  const handleNext = () => {
+    const routerUrl = {
+      0: "copy",
+      1: "/signature",
+    };
+    router.push(routerUrl[tabsIndex]);
   };
   return (
     <WriteWrapper>
@@ -275,7 +286,6 @@ export default memo(function IYWriteInfo() {
       <FormWrapper>
         <FromListItem currentIndex={tabsIndex} />
       </FormWrapper>
-      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} />
       <RecordHeader className="headerline">住院记录</RecordHeader>
       <RecordBotttomWrapper>
         <div className="title">华中科技大学协和深圳医院</div>
@@ -295,6 +305,7 @@ export default memo(function IYWriteInfo() {
           <span className="protocol">《病例复印协议》</span>
         </Flex>
       </RecordBotttomWrapper>
+      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} onClickRight={handleNext} />
     </WriteWrapper>
   );
 });

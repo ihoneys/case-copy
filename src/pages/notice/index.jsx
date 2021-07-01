@@ -21,7 +21,7 @@ export default memo(function IYNotice(props) {
     <ContentWrapper>
       <h3 className="headerline">病案复印须知</h3>
       <div dangerouslySetInnerHTML={{ __html: "<span>hello world</span>" }}></div>
-      <IYBottomButton buttonInfo={buttonInfo} handleRight={handleNext}/>
+      <IYBottomButton buttonInfo={buttonInfo} onClickRight={handleNext}/>
     </ContentWrapper>
   );
 });

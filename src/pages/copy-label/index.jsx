@@ -39,15 +39,16 @@ const buttonInfo = [
       border: "1px solid #00C6B8",
       color: "#fff",
     },
-    name: "上一步",
+    name: "下一步",
   },
   {
     style: {
       width: "167px",
       color: "#00C6B8",
       border: "1px solid #00C6B8",
+      boxShadow: "none",
     },
-    name: "下一步",
+    name: "上一步",
   },
 ];
 
@@ -70,10 +71,12 @@ const closest = (el, selector) => {
   return null;
 };
 
-export default memo(function IYCopyLabel() {
+export default memo(function IYCopyLabel(props) {
+  const router = props.history;
   const [modal, setModal] = useState(true);
   let [count, setCount] = useState(0);
   const [pickerValue, setPickerValue] = useState([]);
+
   const getCallbackData = (data) => {
     // console.log(data);
   };
@@ -98,6 +101,14 @@ export default memo(function IYCopyLabel() {
       e.preventDefault();
     }
   };
+
+  const handlePrev = () => {
+    router.go(-1);
+  };
+
+  const handleNext = ()=> {
+    router.push("/mailing")
+  }
 
   return (
     <CopyLabelWrapper>
@@ -125,7 +136,7 @@ export default memo(function IYCopyLabel() {
           </Flex>
         </Flex>
       </List.Item>
-      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} />
+      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} onClickLeft={handlePrev} onClickRight={handleNext}/>
       <Modal
         visible={modal}
         transparent

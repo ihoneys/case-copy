@@ -3,6 +3,7 @@ export const DetailWrapper = styled.div`
     min-height: 100vh;
     padding: .1rem .12rem;
     background-color: #f5f5f5;
+    box-sizing: border-box;
     .headerline{
         color: #333;
         font-size: .18rem;
@@ -18,6 +19,23 @@ export const DetailWrapper = styled.div`
         height: 74px;
         background: linear-gradient(180deg, #00C6B8 0%, #F5F5F5 100%);
         z-index: 1;
+    }
+    .count-wrapper{
+        position: relative;
+        height: 64px;
+        line-height: 64px;
+        border-radius: 6px;
+        z-index: 999;
+        box-sizing: border-box;
+        background-color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .count-icon{
+            width: 24px;
+            height: 24px;
+            z-index: 999;
+        }
     }
 `
 

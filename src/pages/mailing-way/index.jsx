@@ -27,8 +27,9 @@ const buttonInfo = [
       width: "167px",
       color: "#00C6B8",
       border: "1px solid #00C6B8",
+      boxShadow: "none",
     },
-    name: "暂存",
+    name: "上一步",
   },
 ];
 
@@ -36,43 +37,39 @@ const IYTips = () => {
   return (
     <div className="user-tips">
       <div>温馨提示：</div>
-      <div className="tips-content">
-        除年龄小于1岁患者可由委托人网上预约病案复印，其他患者仅由本人网上申请，如需要委托人办理，请到窗口办理。
-      </div>
+      <div className="tips-content">除年龄小于1岁患者可由委托人网上预约病案复印，其他患者仅由本人网上申请，如需要委托人办理，请到窗口办理。</div>
     </div>
   );
 };
 
 const RenderColumn = (props) => {
   const { isTake } = props;
-  if (isTake) {
+  if (!isTake) {
     return (
       <>
         <IYColumn name="快递公司">
           <div className="pr-15">EMS</div>
         </IYColumn>
-        <IYColumn name="邮寄地址">
+        <IYColumn name="邮寄地址" style={{ borderBottom: "none" }}>
           <Flex className="pr-6">
             <span>请选择</span>
             <img className="next-icon" src={nextIcon} alt="next" />
           </Flex>
         </IYColumn>
-        <IYBottomButton buttonInfo={buttonInfo} isSingle={false} />
       </>
     );
   } else {
     return (
       <>
-        <IYColumn style={{border: "none",paddingBottom: "0px"}} name="院内取件地址"></IYColumn>
-        <p className="address-content">
-          南山医院门诊综合楼负一楼病案管理科 备注： 取件时间：工作日：8:00-12:00
-        </p>
+        <IYColumn style={{ border: "none", paddingBottom: "0px" }} name="院内取件地址"></IYColumn>
+        <p className="address-content">南山医院门诊综合楼负一楼病案管理科 备注： 取件时间：工作日：8:00-12:00</p>
       </>
     );
   }
 };
 
-export default memo(function IYMailingWay() {
+export default memo(function IYMailingWay(props) {
+  const router = props.history;
   const [isToPay, setIsToPay] = useState(true);
   const [isTake, setIsTake] = useState(false);
 
@@ -85,8 +82,16 @@ export default memo(function IYMailingWay() {
     setIsToPay(false);
     setIsTake(true);
   };
+
+  const handlePrev = () => {
+    router.go(-1);
+  };
+
+  const handleNext = () => {
+    router.push("/detail");
+  };
   return (
-    <MailingWayWrapper>
+    <MailingWayWrapper>      
       <IYSteps steps={mailingSteps} currentIndex={1} />
       <IYColumn name="领取方式">
         <Flex className="pr-15">
@@ -102,6 +107,7 @@ export default memo(function IYMailingWay() {
       </IYColumn>
       <RenderColumn isTake={isTake} />
       <IYTips />
+      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} onClickLeft={handlePrev} onClickRight={handleNext} />
     </MailingWayWrapper>
   );
 });

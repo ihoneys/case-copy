@@ -3,6 +3,7 @@ export const MailingWayWrapper = styled.div`
     font-size: 15px;
     background-color: #f5f5f5;
     min-height: 100vh;
+    box-sizing: border-box;
     .next-icon{
         display: block;
         width: 24px;
