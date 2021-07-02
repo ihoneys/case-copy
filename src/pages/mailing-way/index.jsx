@@ -88,7 +88,7 @@ export default memo(function IYMailingWay(props) {
   };
 
   const handleNext = () => {
-    router.push("/detail");
+    router.push("/pay");
   };
   return (
     <MailingWayWrapper>      

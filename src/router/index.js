@@ -11,6 +11,7 @@ const IYMailingWay = React.lazy(() => import("@/pages/mailing-way"))
 const IYAddNewAddress = React.lazy(() => import("@/pages/add-address"))
 const IYAddressList = React.lazy(() => import("@/pages/address"))
 const IYSignature = React.lazy(() => import("@/pages/signature"))
+const IYPayOrder = React.lazy(() => import("@/pages/pay-order"))
 const routes = [
     {
         path: "/",
@@ -57,6 +58,10 @@ const routes = [
     {
         path: "/signature",
         component: IYSignature
+    },
+    {
+        path: "/pay",
+        component: IYPayOrder
     }
 ]
 

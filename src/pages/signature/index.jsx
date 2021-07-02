@@ -131,7 +131,7 @@ export default memo(function IYSignature() {
         <WhiteSpace size="xl" />
         <div className="signature-column">
           <span className="column-width">被委托人签名：</span>
-          {imgBase64 ? <img className="sign-image" src={imgBase64} /> : null}
+          {imgBase64 ? <img className="sign-image" src={imgBase64} alt="sign"/> : null}
         </div>
         <div className="signature-column">
           <span className="column-width">时间：</span>

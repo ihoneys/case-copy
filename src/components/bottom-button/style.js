@@ -16,5 +16,7 @@ export const PositionBtn = styled.div`
         box-shadow: 0rem .04rem .06rem 0rem rgba(0,155,143,0.17);
         height: .44rem;
         border-radius: .5rem;
+        line-height: .44rem;
+        font-size: .16rem;
     }
 `

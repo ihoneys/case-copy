@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import "./assets/css/reset.css"
-import 'antd-mobile/dist/antd-mobile.less'; 
+import 'antd-mobile/dist/antd-mobile.less';
 import "./utils/rem"
+import "./store/index"
 import App from './App';
-import { HashRouter } from "react-router-dom";
+
 ReactDOM.render(
-  <HashRouter>
-    <App />
-  </HashRouter>,
+  <App />,
   document.getElementById('root')
 );
 

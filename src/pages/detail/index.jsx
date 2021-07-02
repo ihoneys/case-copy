@@ -38,17 +38,27 @@ const CustomBackground = () => {
   );
 };
 
-const styleBtn = {
-  width: "100%",
+const styleBtn1 = {
+  width: "1.67rem",
+  background: "#FFAE17",
+  color: "#fff",
+  boxShadow: "none",
+};
+
+const styleBtn2 = {
+  width: "1.67rem",
   border: "1px solid #00C6B8",
   color: "#00C6B8",
   boxShadow: "none",
 };
 
-const buttonInfo = [{ style: styleBtn, name: "取消申请" }];
+const buttonInfo = [
+  { style: styleBtn1, name: "去支付" },
+  { style: styleBtn2, name: "取消申请" },
+];
 
 const renderer = ({ hours, minutes, seconds, completed }) => {
-  if(completed) {
+  if (completed) {
     console.log("倒计时支付完成了");
   }
   return (
@@ -65,10 +75,11 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 };
 
 export default memo(function IYOrderDetail() {
+  const customStatus = 2
   return (
     <DetailWrapper>
       <Countdown date={Date.now() + 4000} renderer={renderer} />
-      {/* <IYOrderSteps currentIndex={1} /> */}
+      <IYOrderSteps currentIndex={1} />
       <ContentWrapper>
         <IYApplyInfo />
       </ContentWrapper>
@@ -76,7 +87,7 @@ export default memo(function IYOrderDetail() {
         <AddressInfo />
       </AddressWrapper>
       <CustomBackground />
-      <IYBottomButton buttonInfo={buttonInfo} />
+      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} />
     </DetailWrapper>
   );
 });

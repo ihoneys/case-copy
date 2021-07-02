@@ -1,4 +1,7 @@
 import React, { memo, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { getIsPersionAction } from "./store/actionCreators";
 
 import { InputItem, Flex, Radio, TextareaItem, ImagePicker, WhiteSpace, Picker, List } from "antd-mobile";
 
@@ -53,9 +56,6 @@ const OthersFromListItem = () => {
   const [beTrustPositiveImg, setBeTrustPositiveImg] = useState([]);
   const [beTrustReverseImg, setBeTrustReverseImg] = useState([]);
   const [beTrustHandImg, setBeTrustHandImg] = useState([]);
-  const onChange = (files, type, index) => {
-    console.log(files, type, index);
-  };
 
   return (
     <>
@@ -255,14 +255,20 @@ const newSteps = [
 ];
 
 export default memo(function IYWriteInfo(props) {
+  // router
   const router = props.history;
+
+  // hooks
   const [tabsIndex, setTabsIndex] = useState(0);
   const [isRead, setIsRead] = useState(false);
   const [value, setValue] = useState(0);
 
+  // redux
+  const dispatch = useDispatch();
+
   const getCurrentIndex = (index) => {
-    console.log(index);
     setTabsIndex(index);
+    dispatch(getIsPersionAction(index));
   };
   const handleNext = () => {
     const routerUrl = {
