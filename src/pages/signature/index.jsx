@@ -9,6 +9,8 @@ import { SignWrapper, MaskWrapper, ContentWrapper } from "./style";
 import IYBottomButton from "@/components/bottom-button";
 import IYSteps from "@/components/steps";
 
+import { defineSteps } from "../../store/utils";
+
 const steps = [
   {
     title: "填写信息",
@@ -36,8 +38,9 @@ const buttonInfo = [
   {
     style: {
       width: "167px",
-      color: "#00C6B8",
+      color: "#0bc2b6",
       border: "1px solid #00C6B8",
+      boxShadow: "none",
     },
     name: "上一步",
   },
@@ -46,6 +49,7 @@ const buttonInfo = [
 const HandWriteSignature = (props) => {
   const { closeSign, getImageBase64 } = props;
 
+  // hooks
   const signCanvas = useRef();
   const clearSign = () => {
     signCanvas.current.clear();
@@ -86,24 +90,31 @@ const HandWriteSignature = (props) => {
   );
 };
 
-export default memo(function IYSignature() {
+export default memo(function IYSignature(props) {
+  const router = props.history;
   const [isCloseSign, setIsCloseSign] = useState(false);
   const [imgBase64, setImgBase64] = useState(null);
+
   const closeSign = () => {
     setIsCloseSign(true);
-    console.log(66);
   };
   const showSign = () => {
-    console.log(666);
     setIsCloseSign(false);
   };
   const getImageBase64 = (data) => {
-    setImgBase64(data)
-    setIsCloseSign(true)
+    setImgBase64(data);
+    setIsCloseSign(true);
+  };
+
+  const onClickRight = () => {
+    router.push("/copy");
+  };
+  const onClickLeft = () => {
+    router.go(-1);
   };
   return (
     <SignWrapper>
-      <IYSteps steps={steps} currentIndex={1} />
+      <IYSteps steps={defineSteps()} currentIndex={1} />
       <div className="content">
         <h4 className="title">病案复印授权委托书</h4>
         <ul className="content-list">
@@ -131,7 +142,7 @@ export default memo(function IYSignature() {
         <WhiteSpace size="xl" />
         <div className="signature-column">
           <span className="column-width">被委托人签名：</span>
-          {imgBase64 ? <img className="sign-image" src={imgBase64} alt="sign"/> : null}
+          {imgBase64 ? <img className="sign-image" src={imgBase64} alt="sign" /> : null}
         </div>
         <div className="signature-column">
           <span className="column-width">时间：</span>
@@ -141,7 +152,7 @@ export default memo(function IYSignature() {
           被委托人签名
         </button>
       </div>
-      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} />
+      <IYBottomButton buttonInfo={buttonInfo} onClickRight={onClickRight} onClickLeft={onClickLeft} isSingle={false} />
       {!isCloseSign ? <HandWriteSignature closeSign={closeSign} getImageBase64={getImageBase64} /> : null}
     </SignWrapper>
   );

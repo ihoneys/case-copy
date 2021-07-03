@@ -8,4 +8,8 @@ export const ColumnWrapper = styled.div`
         border-bottom: 1px solid #E7E7E7;
         padding-bottom: 15px;
     }
+    .label-left{
+        /* width: 100px; */
+        margin-right: 20px;
+    }
 `

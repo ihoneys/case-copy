@@ -1,4 +1,6 @@
 import React, { memo } from "react";
+import { useDispatch } from "react-redux";
+import { selectAddressAction } from "./store/actionCreators";
 
 import { Flex } from "antd-mobile";
 
@@ -31,17 +33,37 @@ const addressList = [
   { id: 1, name: "阿斯顿", phone: "18999992222", address: "广东省深圳市南山区贝培大道锡山家园274广东省深圳市南山区贝培大道锡山家园274广东省深圳市南山区贝培大道锡山家园274" },
 ];
 
-const AddressList = () => {
+const AddressList = (props) => {
+  const { router } = props;
+  //redux
+  const dispatch = useDispatch();
+
+  // 点击地址
+  const handleAddressItem = (value) => {
+    router.go(-1);
+    dispatch(selectAddressAction(value));
+  };
+
+  // 编辑地址
+  const handleEditAddress = (e) => {
+    e.stopPropagation();
+    const path = {
+      pathname: "/editAddress",
+      query: { type: "update" },
+    };
+    router.push(path);
+  };
+
   return (
     <>
       {addressList.map((item, i) => (
-        <ListWrapper key={item.id}>
+        <ListWrapper key={item.id} onClick={() => handleAddressItem(item.address)}>
           <Flex justify="between">
             <div>
               <span className="address-name">{item.name}</span>
               <span className="address-phone">{item.phone}</span>
             </div>
-            <img className="edit-icon" src={editIcon} alt="" />
+            <img onClick={(e) => handleEditAddress(e)} className="edit-icon" src={editIcon} alt="" />
           </Flex>
           <div className="address-content">{item.address}</div>
         </ListWrapper>
@@ -50,11 +72,21 @@ const AddressList = () => {
   );
 };
 
-export default memo(function IYAddressList() {
+export default memo(function IYAddressList(props) {
+  const router = props.history;
+
+  const handleAddNew = () => {
+    const path = {
+      pathname: "/editAddress",
+      query: { type: "add" },
+    };
+    router.push(path)
+  };
+
   return (
     <AddressWrapper>
-      {addressList.length > 0 ? <AddressList /> : <WithoutContent />}
-      <IYBottomButton buttonInfo={buttonInfo} />
+      {addressList.length > 0 ? <AddressList router={router} /> : <WithoutContent />}
+      <IYBottomButton onClickRight={handleAddNew} buttonInfo={buttonInfo} />
     </AddressWrapper>
   );
 });

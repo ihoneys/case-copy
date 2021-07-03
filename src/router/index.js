@@ -48,7 +48,7 @@ const routes = [
         component: IYMailingWay
     },
     {
-        path: "/addAddress",
+        path: "/editAddress",
         component: IYAddNewAddress
     },
     {

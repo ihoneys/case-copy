@@ -1,1 +1,1 @@
-export const IS_PERSION = "IS_PERSION"
+export const IS_MYSELF = "IS_MYSELF"

@@ -45,10 +45,19 @@ const styleBtn = {
 
 const buttonInfo = [{ style: styleBtn, name: "保存" }];
 
-export default memo(function IYAddNewAddress() {
+export default memo(function IYAddNewAddress(props) {
+  const router = props.history;
+  const query = props.location.query;
+  const { type } = query;
   const regionData = serializData();
   const [areaValue, setareaValue] = useState([]);
   const [checked, setchecked] = useState(false);
+
+  // 保存
+  const handleSave = () => {
+    router.go(-1);
+  };
+
   return (
     <AddressWrapper>
       <InputItem placeholder="请输入姓名">姓名</InputItem>
@@ -86,7 +95,7 @@ export default memo(function IYAddNewAddress() {
           </Flex>
         </List.Item>
       </div>
-      <IYBottomButton buttonInfo={buttonInfo} />
+      <IYBottomButton buttonInfo={buttonInfo} onClickRight={handleSave} />
     </AddressWrapper>
   );
 });

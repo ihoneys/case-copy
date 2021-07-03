@@ -11,6 +11,8 @@ import IYRadioItem from "@/components/radio";
 
 import { HeaderWrapper, TabsWrapper, FormWrapper, FormItem, RecordBotttomWrapper, RecordHeader, UploaderWrapper, WriteWrapper } from "./style";
 
+import { defineSteps } from "../../store/utils";
+
 import { district } from "antd-mobile-demo-data";
 
 const tabsList = ["本人办理", "他人代办"];
@@ -227,33 +229,6 @@ const data = [
   { value: 1, label: "bachelor" },
 ];
 
-const steps = [
-  {
-    title: "填写信息",
-  },
-  {
-    title: "领取方式",
-  },
-  {
-    title: "预缴费用",
-  },
-];
-
-const newSteps = [
-  {
-    title: "填写信息",
-  },
-  {
-    title: "补充资料",
-  },
-  {
-    title: "领取方式",
-  },
-  {
-    title: "预缴费用",
-  },
-];
-
 export default memo(function IYWriteInfo(props) {
   // router
   const router = props.history;
@@ -266,9 +241,10 @@ export default memo(function IYWriteInfo(props) {
   // redux
   const dispatch = useDispatch();
 
+  // 本人 or 他人
   const getCurrentIndex = (index) => {
     setTabsIndex(index);
-    dispatch(getIsPersionAction(index));
+    dispatch(getIsPersionAction(!index));
   };
   const handleNext = () => {
     const routerUrl = {
@@ -280,7 +256,7 @@ export default memo(function IYWriteInfo(props) {
   return (
     <WriteWrapper>
       <HeaderWrapper>
-        <IYSteps steps={tabsIndex === 0 ? steps : newSteps} currentIndex={0} />
+        <IYSteps steps={defineSteps(!tabsIndex)} currentIndex={0} />
       </HeaderWrapper>
       <Tabs getCurrentIndex={getCurrentIndex} />
       {tabsIndex === 1 && (

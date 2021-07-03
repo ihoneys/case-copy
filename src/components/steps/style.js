@@ -5,22 +5,22 @@ export const StepsWrapper = styled.div`
     justify-content: space-between;
     position: relative;
     background-color: #EDEDED;
-    padding: 30px;
+    padding: .3rem;
     .steps-list{
         display: flex;
         align-items: center;
         flex-direction: column;        
     }
     .current-index{
-        width: 26px;
-        height: 26px;        
+        width: .26rem;
+        height: .26rem;        
         border-radius: 50%;   
         text-align: center;
-        line-height: 26px;
-        margin-bottom: 10px;
+        line-height: .26rem;
+        margin-bottom: .1rem;
         z-index: 20;
         background-color: #D8D8D8;
-        font-size: 14px;
+        font-size: .14rem;
         color: #666666;
     }
     .active {
@@ -34,6 +34,6 @@ export const StepsWrapper = styled.div`
     .steps-title{
         color: #666666;
         font-weight: bold;
-        font-size: 12px;
+        font-size: .12rem;
     }    
 `

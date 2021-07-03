@@ -1,9 +1,8 @@
 import React, { memo, useState } from "react";
+import { useSelector, shallowEqual } from "react-redux";
 
 import { Flex } from "antd-mobile";
 import { MailingWayWrapper } from "./style";
-
-import { mailingSteps } from "@/common/local-data";
 
 import IYRadioItem from "@/components/radio";
 import IYSteps from "@/components/steps";
@@ -11,6 +10,8 @@ import IYColumn from "@/components/column";
 import IYBottomButton from "@/components/bottom-button";
 
 import nextIcon from "@/assets/img/next.png";
+
+import { defineSteps } from "../../store/utils";
 
 const buttonInfo = [
   {
@@ -43,16 +44,22 @@ const IYTips = () => {
 };
 
 const RenderColumn = (props) => {
-  const { isTake } = props;
+  const { isTake, router, currentAddress } = props;
+
+  // 选择地址
+  const changeAddress = () => {
+    router.push("/address");
+  };
+  // 邮寄，自取切换
   if (!isTake) {
     return (
       <>
         <IYColumn name="快递公司">
           <div className="pr-15">EMS</div>
         </IYColumn>
-        <IYColumn name="邮寄地址" style={{ borderBottom: "none" }}>
-          <Flex className="pr-6">
-            <span>请选择</span>
+        <IYColumn name="邮寄地址" style={{ borderBottom: "none" }} onClick={changeAddress}>
+          <Flex justify="end" className="node-flex pr-6">
+            <span>{currentAddress ? currentAddress : "请选择"}</span>
             <img className="next-icon" src={nextIcon} alt="next" />
           </Flex>
         </IYColumn>
@@ -78,6 +85,16 @@ export default memo(function IYMailingWay(props) {
     setIsTake(false);
   };
 
+  // redux
+  const { isMyself, currentAddress } = useSelector(
+    (state) => ({
+      isMyself: state.getIn(["writeInfo", "isMyself"]),
+      currentAddress: state.getIn(["address", "currentAddress"]),
+    }),
+    shallowEqual
+  );
+
+  console.log(isMyself, "isMyself");
   const handleTake = () => {
     setIsToPay(false);
     setIsTake(true);
@@ -91,8 +108,8 @@ export default memo(function IYMailingWay(props) {
     router.push("/pay");
   };
   return (
-    <MailingWayWrapper>      
-      <IYSteps steps={mailingSteps} currentIndex={1} />
+    <MailingWayWrapper>
+      <IYSteps steps={defineSteps(isMyself)} currentIndex={isMyself ? 1 : 2} />
       <IYColumn name="领取方式">
         <Flex className="pr-15">
           <Flex style={{ marginRight: ".3rem" }} onClick={(e) => handleToPay()}>
@@ -105,7 +122,7 @@ export default memo(function IYMailingWay(props) {
           </Flex>
         </Flex>
       </IYColumn>
-      <RenderColumn isTake={isTake} />
+      <RenderColumn isTake={isTake} currentAddress={currentAddress} router={router} />
       <IYTips />
       <IYBottomButton buttonInfo={buttonInfo} isSingle={false} onClickLeft={handlePrev} onClickRight={handleNext} />
     </MailingWayWrapper>

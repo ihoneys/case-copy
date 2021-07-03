@@ -18,15 +18,3 @@ export const entranceData = [
         icon: phoneIcon
     },
 ]
-
-export const mailingSteps = [
-    {
-        title: "填写信息",
-    },
-    {
-        title: "领取方式",
-    },
-    {
-        title: "预缴费用",
-    },
-];

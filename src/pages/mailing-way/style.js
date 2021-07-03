@@ -23,4 +23,7 @@ export const MailingWayWrapper = styled.div`
         line-height: 25px;
         padding: 10px 15px 15px 15px;
     }
+    .node-flex{
+        flex: 1 1
+    }
 `

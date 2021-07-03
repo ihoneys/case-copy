@@ -23,7 +23,7 @@ const style = {
   left: "50%",
   transform: " translateX(-50%)",
   backgroundColor: "#f5f5f5",
-  zIndex: "19"
+  zIndex: "19",
 };
 
 export default memo(function IYSteps(props) {

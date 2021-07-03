@@ -2,12 +2,12 @@ import * as actionTypes from "./constant"
 
 
 const changeIsPersionAction = (res) => ({
-    type: actionTypes.IS_PERSION,
-    isPersion: res
+    type: actionTypes.IS_MYSELF,
+    isMyself: res
 })
 
-export const getIsPersionAction = (isPersion) => {
+export const getIsPersionAction = (isMyself) => {
     return dispatch => {
-        dispatch(changeIsPersionAction(isPersion))
+        dispatch(changeIsPersionAction(isMyself))
     }
 }
