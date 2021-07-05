@@ -131,6 +131,7 @@ export const UploaderWrapper = styled.div`
     .uploader-flex{
         text-align: center;
         margin-left: .1rem;
+        width: 100px;
     }
     .uploader-wrapper{
         display: flex;
@@ -142,7 +143,7 @@ export const UploaderWrapper = styled.div`
     .card-name{
         color: #999999;
         font-size: .13rem;
-        width: 100px;
+        
         /* text-align: left; */
     }
     /* .am-image-picker-item{

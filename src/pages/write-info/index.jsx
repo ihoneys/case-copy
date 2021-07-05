@@ -11,7 +11,7 @@ import IYRadioItem from "@/components/radio";
 
 import { HeaderWrapper, TabsWrapper, FormWrapper, FormItem, RecordBotttomWrapper, RecordHeader, UploaderWrapper, WriteWrapper } from "./style";
 
-import { defineSteps } from "../../store/utils";
+import { defineSteps } from "@/utils/utils";
 
 import { district } from "antd-mobile-demo-data";
 

@@ -6,7 +6,7 @@ import IYApplyInfo from "@/components/apply-info";
 import IYSteps from "@/components/steps";
 import IYBottomButton from "@/components/bottom-button";
 
-import { defineSteps } from "../../store/utils";
+import { defineSteps } from "@/utils/utils";
 
 const styleBtn1 = {
   width: "1.67rem",

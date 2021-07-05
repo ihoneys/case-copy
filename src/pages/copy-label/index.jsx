@@ -1,9 +1,12 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
+import { getCopyLabelData } from "@/service/api";
 
 import { Flex, Picker, List, Modal } from "antd-mobile";
 import { CopyLabelWrapper } from "./style";
 
 import { district } from "antd-mobile-demo-data";
+
+import { isObjEmpty } from "@/utils/utils";
 
 import IYLabelComponent from "@/components/label-component";
 import IYBottomButton from "@/components/bottom-button";
@@ -52,14 +55,6 @@ const buttonInfo = [
   },
 ];
 
-const utilityData = Array.from({ length: 10 }).map((item, i) => {
-  return { name: "医药报销", key: i, checked: false };
-});
-
-const copyContentData = Array.from({ length: 10 }).map((item, i) => {
-  return { name: "医药报销", key: i, checked: false };
-});
-
 const closest = (el, selector) => {
   const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
   while (el) {
@@ -71,11 +66,13 @@ const closest = (el, selector) => {
   return null;
 };
 
-export default memo(function IYCopyLabel(props) {
+export default function IYCopyLabel(props) {
   const router = props.history;
   const [modal, setModal] = useState(true);
   let [count, setCount] = useState(0);
   const [pickerValue, setPickerValue] = useState([]);
+
+  const [allCopyData, setAllCopyData] = useState({ copyContent: [{ name: "其他", checked: false }], copyPurpose: [{ name: "其他", checked: false }] });
 
   const getCallbackData = (data) => {
     // console.log(data);
@@ -106,13 +103,13 @@ export default memo(function IYCopyLabel(props) {
     router.go(-1);
   };
 
-  const handleNext = ()=> {
-    router.push("/mailing")
-  }
+  const handleNext = () => {
+    router.push("/mailing");
+  };
 
   return (
     <CopyLabelWrapper>
-      <IYLabelComponent title="复印用途" data={utilityData} getSelectedData={getCallbackData} />
+      <IYLabelComponent title="复印用途" data={allCopyData.copyContent} getSelectedData={getCallbackData} />
       <div className="list-wrapper">
         <Picker title="选择地区" extra="请选择(可选)" cols={2} cascade={false} data={region} value={pickerValue} onChange={(v) => setPickerValue(v)} onOk={(v) => setPickerValue(v)}>
           <List.Item style={{ width: "100%" }} arrow="horizontal">
@@ -120,7 +117,7 @@ export default memo(function IYCopyLabel(props) {
           </List.Item>
         </Picker>
       </div>
-      <IYLabelComponent title="复印内容" data={copyContentData} getSelectedData={getCallbackData} />
+      <IYLabelComponent title="复印内容" data={allCopyData.copyPurpose} getSelectedData={getCallbackData} />
 
       <List.Item>
         <Flex justify="between" className="print">
@@ -136,7 +133,7 @@ export default memo(function IYCopyLabel(props) {
           </Flex>
         </Flex>
       </List.Item>
-      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} onClickLeft={handlePrev} onClickRight={handleNext}/>
+      <IYBottomButton buttonInfo={buttonInfo} isSingle={false} onClickLeft={handlePrev} onClickRight={handleNext} />
       <Modal
         visible={modal}
         transparent
@@ -157,4 +154,4 @@ export default memo(function IYCopyLabel(props) {
       </Modal>
     </CopyLabelWrapper>
   );
-});
+}

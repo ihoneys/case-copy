@@ -11,7 +11,7 @@ import IYBottomButton from "@/components/bottom-button";
 
 import nextIcon from "@/assets/img/next.png";
 
-import { defineSteps } from "../../store/utils";
+import { defineSteps } from "@/utils/utils";
 
 const buttonInfo = [
   {

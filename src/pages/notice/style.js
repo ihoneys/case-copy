@@ -7,5 +7,6 @@ export const ContentWrapper = styled.div`
         font-size: .18rem;
         color: #333;
         margin-top: .3rem;
+        margin-bottom: .12rem;
     }
 `

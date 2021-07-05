@@ -9,7 +9,7 @@ import { SignWrapper, MaskWrapper, ContentWrapper } from "./style";
 import IYBottomButton from "@/components/bottom-button";
 import IYSteps from "@/components/steps";
 
-import { defineSteps } from "../../store/utils";
+import { defineSteps } from "@/utils/utils";
 
 const steps = [
   {

@@ -1,3 +1,16 @@
+export function isObjEmpty(obj) {
+    return (
+        obj === undefined ||
+        obj === 'undefined' ||
+        obj == null ||
+        obj === '' ||
+        obj.length === 0 ||
+        (typeof obj === 'object' && Object.keys(obj).length === 0)
+    )
+}
+
+
+
 export function defineSteps(isSpilce = false) {
     const steps = [
         {
